@@ -315,6 +315,20 @@ sortActionButton.addEventListener("click", () => {
 
 // слушатель клика по кнопке добавить фрукт
 addActionButton.addEventListener("click", () => {
+  let weight = parseInt(weightInput.value);
+
+  if (isNaN(weight)) {
+    weightInput.value = weight = 17;
+    alertMessage.innerText =
+      "Введённое значение не является числом, установленно значение по умолчанию";
+    modalAlert.show();
+  } else if (weight <= 0) {
+    weightInput.value = weight = 17;
+    alertMessage.innerText =
+      "Введённое значение меньше или равно 0, установленно значение по умолчанию";
+    modalAlert.show();
+  }
+
   if (kindInput.value && colorInput.value && weightInput.value) {
     fruits.push({
       kind: kindInput.value,
