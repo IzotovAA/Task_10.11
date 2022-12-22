@@ -1,6 +1,5 @@
 "use strict";
 
-// элементы в DOM можно получить при помощи функции querySelector
 const fruitsList = document.querySelector(".fruits__list"); // список карточек
 const shuffleButton = document.querySelector(".shuffle__btn"); // кнопка перемешивания
 const filterButton = document.querySelector(".filter__btn"); // кнопка фильтрации
@@ -81,10 +80,8 @@ let savedArray = [
 
 /*** ОТОБРАЖЕНИЕ ***/
 
-// отрисовка карточек (готово)
+// отрисовка карточек
 const display = () => {
-  // TODO: очищаем fruitsList от вложенных элементов,
-  // чтобы заполнить актуальными данными из fruits
   let fruitCard = document.querySelectorAll(".fruit__item"); // карточки фруктов
 
   if (fruitCard.length) {
@@ -94,8 +91,6 @@ const display = () => {
   }
 
   for (let i = 0; i < fruits.length; i++) {
-    // TODO: формируем новый элемент <li> при помощи document.createElement,
-    // и добавляем в конец списка fruitsList при помощи document.appendChild
     let color = fruits[i].color;
     fruitsList.insertAdjacentHTML(
       "beforeend",
@@ -116,19 +111,12 @@ const getRandomInt = (min, max) => {
 };
 // ...
 
-// перемешивание массива (готово)
+// перемешивание массива
 const shuffleFruits = () => {
   let result = [];
   let [...arrayCheck] = [...fruits];
 
-  // ATTENTION: сейчас при клике вы запустите бесконечный цикл и браузер зависнет
   while (fruits.length > 0) {
-    // TODO: допишите функцию перемешивания массива
-    //
-    // Подсказка: находим случайный элемент из fruits, используя getRandomInt
-    // вырезаем его из fruits и вставляем в result.
-    // ex.: [1, 2, 3], [] => [1, 3], [2] => [3], [2, 1] => [], [2, 1, 3]
-    // (массив fruits будет уменьшатся, а result заполняться)
     let index = getRandomInt(0, fruits.length - 1);
     let deleteElement = fruits.splice(index, 1);
     result.push(deleteElement[0]);
@@ -145,7 +133,6 @@ const shuffleFruits = () => {
   if (arrayCheckResult) {
     alertMessage.innerText = "Перемешивание не удалось, попробуйте ещё раз";
     modalAlert.show();
-    // alert("перемешивание не удалось, попробуйте ещё раз");
     arrayCheckResult = false;
   }
   // ...
@@ -154,9 +141,8 @@ const shuffleFruits = () => {
 };
 // ...
 
-// слушатель клика на кнопку перемешать (готово)
+// слушатель клика на кнопку перемешать
 shuffleButton.addEventListener("click", () => {
-  // debugger;
   shuffleFruits();
   display();
 });
@@ -164,7 +150,7 @@ shuffleButton.addEventListener("click", () => {
 
 /*** ФИЛЬТРАЦИЯ ***/
 
-// фильтрация массива (готово)
+// фильтрация массива
 const filterFruits = () => {
   let min = parseInt(minWeightInput.value);
   let max = parseInt(maxWeightInput.value);
@@ -175,18 +161,12 @@ const filterFruits = () => {
     alertMessage.innerText =
       "Введённое значение не является числом, установленны значения по умолчанию";
     modalAlert.show();
-    // alert(
-    //   "введённое значение не является числом, установленны значения по умолчанию"
-    // );
   } else if (min <= 0 || max <= 0) {
     minWeightInput.value = min = 17;
     maxWeightInput.value = max = 28;
     alertMessage.innerText =
       "Введённое значение меньше или равно 0, установленны значения по умолчанию";
     modalAlert.show();
-    // alert(
-    //   "введённое значение меньше или равно 0, установленны значения по умолчанию"
-    // );
   } else if (min > max) {
     minWeightInput.value = min = 17;
     maxWeightInput.value = max = 28;
@@ -196,7 +176,6 @@ const filterFruits = () => {
   }
 
   const filteredArray = fruits.filter((item) => {
-    // TODO: допишите функцию
     const weight = item.weight;
     if (min <= weight && weight <= max) {
       return true;
@@ -208,7 +187,7 @@ const filterFruits = () => {
 };
 // ...
 
-// кнопка фильтровать (готово)
+// кнопка фильтровать
 filterButton.addEventListener("click", () => {
   filterFruits();
   display();
@@ -220,7 +199,7 @@ filterButton.addEventListener("click", () => {
 let sortKind = "bubbleSort"; // инициализация состояния вида сортировки
 let sortTime = "-"; // инициализация состояния времени сортировки
 
-// функция сравнивает 2 цвета согласно массиву colorPriority (готово)
+// функция сравнивает 2 цвета согласно массиву colorPriority
 const comparationColor = (a, b) => {
   // TODO: допишите функцию сравнения двух элементов по цвету
   if (colorPriority.indexOf(a) > colorPriority.indexOf(b)) {
@@ -229,7 +208,7 @@ const comparationColor = (a, b) => {
 };
 // ...
 
-// функция разделитель для метода быстрой сортировкиы (готово)
+// функция разделитель для метода быстрой сортировкиы
 function partition(items, comparation, left, right) {
   let pivot = items[Math.floor((right + left) / 2)].color,
     i = left,
@@ -252,7 +231,7 @@ function partition(items, comparation, left, right) {
 }
 // ...
 
-// функция обмена элементов для метода быстрой сортировки (готово)
+// функция обмена элементов для метода быстрой сортировки
 function swap(items, firstIndex, secondIndex) {
   const temp = items[firstIndex];
   items[firstIndex] = items[secondIndex];
@@ -260,11 +239,10 @@ function swap(items, firstIndex, secondIndex) {
 }
 // ...
 
-// объект хранящий методы и функцию запуска сортировки (готово)
+// объект хранящий методы и функцию запуска сортировки
 const sortAPI = {
   // сортировка методом пузырька
   bubbleSort(arr, comparation) {
-    // TODO: допишите функцию сортировки пузырьком
     const n = arr.length;
     // внешняя итерация по элементам массива (в данном случае по объектам)
     for (let i = 0; i < n - 1; i++) {
@@ -280,7 +258,7 @@ const sortAPI = {
   },
   // ...
 
-  // сортировка методом быстрая сортировка (готово)
+  // сортировка методом быстрая сортировка
   quickSort(items, comparation, left, right) {
     let index;
     if (items.length > 1) {
@@ -304,6 +282,7 @@ const sortAPI = {
     sort(arr, comparation);
     const end = new Date().getTime();
     sortTime = `${end - start} ms`;
+    console.log("start", start, "end", end);
   },
 };
 // ...
@@ -312,9 +291,8 @@ const sortAPI = {
 sortKindLabel.textContent = sortKind;
 sortTimeLabel.textContent = sortTime;
 
-// слушатель клика по кнопке смены алгоритма сортировки (готово)
+// слушатель клика по кнопке смены алгоритма сортировки
 sortChangeButton.addEventListener("click", () => {
-  // TODO: переключать значение sortKind между 'bubbleSort' / 'quickSort'
   if (sortKindLabel.textContent === "bubbleSort") {
     sortKind = sortKindLabel.textContent = "quickSort";
   } else if (sortKindLabel.textContent === "quickSort") {
@@ -323,25 +301,20 @@ sortChangeButton.addEventListener("click", () => {
 });
 // ...
 
-// слушатель клика по кнопке сортировки (готово)
+// слушатель клика по кнопке сортировки
 sortActionButton.addEventListener("click", () => {
-  // TODO: вывести в sortTimeLabel значение 'sorting...'
   sortKindLabel.textContent = sortKind;
   const sort = sortAPI[sortKind];
   sortAPI.startSort(sort, fruits, comparationColor);
   display();
   sortTimeLabel.textContent = sortTime;
-  // TODO: вывести в sortTimeLabel значение sortTime
 });
 // ...
 
 /*** ДОБАВИТЬ ФРУКТ ***/
 
-// слушатель клика по кнопке добавить фрукт (готово)
+// слушатель клика по кнопке добавить фрукт
 addActionButton.addEventListener("click", () => {
-  // TODO: создание и добавление нового фрукта в массив fruits
-  // необходимые значения берем из kindInput, colorInput, weightInput
-
   if (kindInput.value && colorInput.value && weightInput.value) {
     fruits.push({
       kind: kindInput.value,
@@ -351,7 +324,6 @@ addActionButton.addEventListener("click", () => {
   } else {
     alertMessage.innerText = "Необходимо заполнить все поля";
     modalAlert.show();
-    // alert("необходимо заполнить все поля");
   }
   display();
 });
