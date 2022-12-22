@@ -3,19 +3,71 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <link rel="stylesheet" href="./css/index.css" />
+
+    <!-- Bootstrap CSS (jsDelivr CDN) -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="./css/index.css" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans"
+      rel="stylesheet"
+    />
+
     <title>&#x1F34C;Экзотические фрукты</title>
   </head>
 
   <body>
     <main>
+      <!-- Модальное окно alert-->
+      <div
+        class="modal fade"
+        id="alert"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="alertLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title mx-auto" id="alertLabel">Внимание</h5>
+            </div>
+            <div class="modal-body d-flex">
+              <h6 class="mx-auto my-auto">
+                <span id="alert-message">Ошибка</span>
+              </h6>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary button-close"
+                data-bs-dismiss="modal"
+              >
+                Закрыть
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- ПАНЕЛЬ УПРАВЛЕНИЯ -->
       <section class="panel__wrapper">
         <h2 class="wrapper__title">⚙️ Панель управления</h2>
 
         <div class="panel__devtools">
           <!-- TODO: при нажатии элементы массива перемешиваются в случайном порядке -->
+          <hr />
           <button class="shuffle__btn line">Перемешать</button>
+          <hr />
 
           <div class="line">
             <!-- пользователь указывает нижнюю границу weight -->
@@ -31,6 +83,7 @@
 
           <!-- TODO: при нажатии элементы массива фильтруются в пределах [minweight, maxweight] -->
           <button class="filter__btn line">Фильтровать</button>
+          <hr />
 
           <div class="line">
             <span>Алгоритм сортировки:</span>
@@ -51,6 +104,7 @@
 
           <!-- TODO: при нажатии происходит сортировка и рассчет времени сортировки -->
           <button class="sort__action__btn line">Сортировать</button>
+          <hr />
 
           <!-- пользователь указывает значения характеристик будущего фрукта -->
           <div class="line">
@@ -58,10 +112,28 @@
             <input class="kind__input" />
           </div>
 
-          <div class="line">
+          <!-- <div class="line">
             <div>color:</div>
             <input class="color__input" />
-          </div>
+          </div> -->
+
+          <!-- Всплывающий список на замену input class="color__input" -->
+          <form>
+            <div class="line">
+              <div>color:</div>
+              <select class="color__input" name="color">
+                <option value="красный">красный</option>
+                <option value="розово-красный">розово-красный</option>
+                <option value="светло-коричневый">светло-коричневый</option>
+                <option value="жёлтый">жёлтый</option>
+                <option value="зелёный">зелёный</option>
+                <option value="голубой">голубой</option>
+                <option value="синий">синий</option>
+                <option value="фиолетовый">фиолетовый</option>
+              </select>
+            </div>
+          </form>
+          <!-- конец высплывающего списка -->
 
           <div class="line">
             <div>weight:</div>
@@ -70,6 +142,10 @@
 
           <!-- TODO: при нажатии новый фрукт добавляется в конец списка -->
           <button class="add__action__btn line">Добавить фрукт</button>
+          <hr />
+          <button class="save__array__btn line">Сохранить массив</button>
+          <button class="restore__array__btn line">Восстановить массив</button>
+          <hr />
         </div>
       </section>
 
@@ -121,6 +197,13 @@
         </ul>
       </section>
     </main>
+
+    <!-- Bootstrap Bundle JS (jsDelivr CDN) -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+      crossorigin="anonymous"
+    ></script>
 
     <script src="./js/index.js"></script>
   </body>

@@ -33,8 +33,13 @@ button {
   max-width: fit-content;
 }
 
-input {
-  margin: 5px 10px 5px 0;
+button:hover {
+  background-color: #2a4aba;
+}
+
+input,
+select {
+  margin: 5px 5px 5px 0;
   border: 0;
   padding: 0 10px;
   line-height: 36px;
@@ -45,6 +50,8 @@ input {
   background-color: #3cbc8d;
   color: white;
   max-width: 200px;
+  height: 36px;
+  width: 189px;
 }
 
 main {
@@ -59,6 +66,7 @@ main {
   text-transform: uppercase;
   font-weight: bold;
   font-size: 18px;
+  padding-top: 10px;
 }
 
 /* Панель управления */
@@ -76,10 +84,12 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  /* margin: 10px;
+  padding: 10px; */
 }
 
 .line {
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 /* Список экзотических фруктов */
@@ -103,7 +113,7 @@ main {
   margin: 10px;
   padding: 10px;
   width: fit-content;
-  height: 100px;
+  height: fit-content;
   border-radius: 10px;
 }
 
@@ -127,6 +137,22 @@ main {
   background: #cd853f;
 }
 
+.fruit_red {
+  background: red;
+}
+
+.fruit_orange {
+  background: orange;
+}
+
+.fruit_deepskyblue {
+  background: deepskyblue;
+}
+
+.fruit_blue {
+  background: blue;
+}
+
 .fruit__info {
   display: flex;
   justify-content: center;
@@ -135,4 +161,31 @@ main {
   background: #fff;
   height: 100%;
   padding: 10px;
+  height: fit-content;
+}
+
+hr {
+  height: 3px !important;
+  background-color: gray;
+  margin: 3px;
+  opacity: 0.7;
+  min-width: fit-content;
+}
+
+.modal-header {
+  background-color: #008cba;
+  color: antiquewhite;
+  font-family: "Open Sans", monospace;
+}
+
+.modal-footer {
+  background-color: #008cba;
+  font-family: "Open Sans", monospace;
+}
+
+.modal-body {
+  min-height: 100px;
+  background-color: #1b9f6f;
+  color: antiquewhite;
+  font-family: "Open Sans", monospace;
 }

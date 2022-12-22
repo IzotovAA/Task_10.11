@@ -7,8 +7,8 @@
 - HTML
 - CSS
 - JavaScript
-- Bootstrap???
+- Bootstrap
 
 ## Как открыть/запустить
 
-Запустить файл index.html в интересующей папке проета
+Запустить файл index.html в папке проета
